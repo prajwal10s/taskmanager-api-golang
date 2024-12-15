@@ -20,6 +20,21 @@ func main() {
 	// Set up our GIN router
 	r := gin.Default()
 
+//Below are the routes needed according to the req.
+	// 1.	POST /tasks - Create a task.
+	// 2.	GET /tasks - List tasks with optional query parameters.
+	// 3.	GET /tasks/:id - Get a specific task.
+	// 4.	PATCH /tasks/:id - Update a task.
+	// 5.	DELETE /tasks/:id - Delete a task.
+	// 6.	POST /users - Create a new user.
+	// 7.	POST /users/login - Log in a user.
+	// 8.	POST /users/logout - Log out a user.
+	// 9.	GET /users/me - Fetch user profile.
+	// 10.	PATCH /users/me - Update user profile.
+	// 11.	DELETE /users/me - Delete user account.
+
+
+	
 	// Start server
 	port := os.Getenv("PORT")
 	if port == "" {

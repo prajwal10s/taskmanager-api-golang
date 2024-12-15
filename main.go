@@ -6,6 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	//importing dotenv to use environment variables
+	"taskmanager/db"
+
 	"github.com/joho/godotenv"
 )
 
@@ -16,6 +18,16 @@ func main() {
   if err != nil {
     log.Fatal("Error loading .env file")
   }
+
+	// Connect to mognodb
+	err = db.Connect()
+	if err != nil {
+		log.Fatalf("Database connection failed: %v", err)
+	}
+//create your indexes so call the createIndex functions
+	db.CreateIndexes()
+	db.CreateTaskIndexes()
+
 
 	// Set up our GIN router
 	r := gin.Default()
@@ -34,7 +46,7 @@ func main() {
 	// 11.	DELETE /users/me - Delete user account.
 
 
-	
+
 	// Start server
 	port := os.Getenv("PORT")
 	if port == "" {

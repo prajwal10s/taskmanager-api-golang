@@ -16,13 +16,12 @@ import (
 
 var DB *mongo.Database
 
-func Connect() {
+func Connect() error{
 	// Load environment variables
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-
 	// MongoDB connection
 	client, err := mongo.Connect(
 		nil,
@@ -35,6 +34,7 @@ func Connect() {
 	// Set DB to a global variable
 	DB = client.Database("taskmanagerGo")
 	log.Println("Connected to MongoDB")
+	return nil
 }
 
 // CreateIndexes creates unique indexes for the users and tasks collections

@@ -13,4 +13,5 @@ type User struct {
 	Password		string	`bson:"password" json:"password"`
 	Age		int	`bson:"age,omitempty" json:"age,omitempty"`
 	Tokens   []string           `bson:"tokens,omitempty" json:"tokens,omitempty"`
+	
 }

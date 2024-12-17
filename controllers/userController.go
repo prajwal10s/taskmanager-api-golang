@@ -62,6 +62,20 @@ func LoginUser(c *gin.Context) {
 	}
 
 	token, _ := utils.GenerateJWT(user.ID.Hex())
+	user.Tokens = append(user.Tokens, token)
+
+	// Update the user's tokens in the database
+	_, updateErr := db.DB.Collection("users").UpdateOne(
+		ctx,
+		bson.M{"_id": user.ID},
+		bson.M{"$set": bson.M{"tokens": user.Tokens}},
+	)
+	if updateErr != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update user tokens"})
+		return
+	}
+
+	// Respond with the token
 	c.JSON(http.StatusOK, gin.H{"token": token})
 }
 

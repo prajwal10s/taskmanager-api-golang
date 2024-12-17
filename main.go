@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	//importing dotenv to use environment variables
 	"taskmanager/db"
+	"taskmanager/routes"
 
 	"github.com/joho/godotenv"
 )
@@ -45,7 +46,8 @@ func main() {
 	// 10.	PATCH /users/me - Update user profile.
 	// 11.	DELETE /users/me - Delete user account.
 
-
+	routes.UserRoutes(r);
+	routes.TaskRoutes(r);
 
 	// Start server
 	port := os.Getenv("PORT")

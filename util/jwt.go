@@ -13,6 +13,8 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
+
+
 func GenerateJWT(userID string) (string, error) {
 	claims := &Claims{
 		UserID: userID,
